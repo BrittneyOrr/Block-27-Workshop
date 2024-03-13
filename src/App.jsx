@@ -1,16 +1,14 @@
 import { useState } from 'react'
-
 import './App.css'
+import Authenticate from "./components/authenticate";
+import SignUpForm from "./components/signUpForm";
 
-function App() {
 
+export default function App() {
   return (
     <>
-      <div>
-       
-      </div>
+      <Authenticate />
+      <SignUpForm />
     </>
-  )
+  );
 }
-
-export default App
