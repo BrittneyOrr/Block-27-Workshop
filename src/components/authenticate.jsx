@@ -4,7 +4,6 @@ export default function Authenticate(props) {
     const { token } = props;
     const [successMessage, setSuccessMessage] = useState(null);
 	const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
 
      async function handleClick() {
      console.log('IN handleClick');
