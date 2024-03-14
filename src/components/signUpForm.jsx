@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 
-export default function SignUpForm() {
+export default function SignUpForm(props) {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [error, setError] = useState(null);
+   const { setToken } = props;
 
    async function handleSubmit (event) {
     event.preventDefault();
@@ -20,14 +21,15 @@ export default function SignUpForm() {
             })
         });
         const result = await response.json();
-        console.log(result);
+        console.log('Result: ', result);
+        setToken(result.token);
     } catch (error){
     setError(error.message);
    }
 }
 
 return (
-    <div>
+    <div className="formWrapper">
         <h2>Sign Up!</h2>
         {
             error && <p>{error}</p>
@@ -35,14 +37,16 @@ return (
 
         <form onSubmit = {handleSubmit}> 
             <label>
-                Username: <input value = {username} onChange={(e) => setUsername(e.target.value)} />
+                Username: {' '}
+                <input value = {username} required minlength = "8" onChange={(e) => setUsername(e.target.value)} />
             </label>
     
             <label>
-                Password: <input value= {password} onChange={(e) => setPassword(e.target.value)} />
+                Password: {' '}
+                <input value= {password} required minlength = "8" onChange={(e) => setPassword(e.target.value)} />
             </label>
     
-            <button> Submit </button>
+            <button className="button"> Submit </button>
         </form>
     </div>
     );
